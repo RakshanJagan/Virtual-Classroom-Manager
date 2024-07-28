@@ -91,15 +91,3 @@ Represents a student with an ID and name, and tracks assignment completion statu
 
 Handles user input and coordinates actions across classrooms, students, and assignments.
 
-### Example Code
-
-```java
-public class Main {
-    public static void main(String[] args) {
-        HashMap<String, Classroom> classes = new HashMap<>();
-        Scanner sc = new Scanner(System.in);
-        while (true) {
-            // Display menu and process user input
-        }
-    }
-}
