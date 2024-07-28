@@ -1,22 +1,15 @@
-# Design Patterns Demonstration
+# Virtual Classroom Manager
 
-This project demonstrates the use of various software design patterns through practical use cases. The examples cover Behavioral, Creational, and Structural design patterns in Java.
+This project is a terminal-based Virtual Classroom Manager that handles class scheduling, student attendance, and assignment submissions. The application is designed to run for a long time gathering inputs from users, with proper logging, exception handling, and adherence to best practices.
 
-## Project Structure
+## Features
 
-The project is organized into different sections for each design pattern category:
-
-1. **Behavioral Design Patterns**
-    - **Observer Pattern**: Blog notification system for subscribers.
-    - **Strategy Pattern**: Payment system with multiple payment methods.
-
-2. **Creational Design Patterns**
-    - **Singleton Pattern**: Configuration manager for a single instance configuration.
-    - **Factory Pattern**: Shape creation system.
-
-3. **Structural Design Patterns**
-    - **Adapter Pattern**: Payment gateway integration with different interfaces.
-    - **Decorator Pattern**: Text editor with dynamic functionalities (spell check, grammar check).
+1. **Classroom Management**: Add, list, and remove virtual classrooms.
+2. **Student Management**: Enroll students into classrooms, and list students in each classroom.
+3. **Assignment Management**: Schedule assignments for classrooms and allow students to submit them.
+4. **Logging**: Proper logging mechanisms are implemented.
+5. **Exception Handling**: Robust exception handling for all operations.
+6. **Performance Optimized**: Highly optimized for performance with defensive programming and validations at all levels.
 
 ## Getting Started
 
@@ -25,106 +18,88 @@ The project is organized into different sections for each design pattern categor
 - Java Development Kit (JDK) 8 or higher
 - IDE or text editor for Java development
 
-### Running the Examples
+### Running the Program
 
 1. **Clone the Repository**
 
     ```bash
-    git clone https://github.com/yourusername/design-patterns-demo.git
-    cd design-patterns-demo
+    git clone https://github.com/yourusername/virtual-classroom-manager.git
+    cd virtual-classroom-manager
     ```
 
 2. **Compile and Run**
 
-    Each design pattern example is in its own Java file. You can compile and run each example using the following commands:
-
     ```bash
-    javac src/ObserverPatternDemo.java
-    java -cp src ObserverPatternDemo
-
-    javac src/StrategyPatternDemo.java
-    java -cp src StrategyPatternDemo
-
-    javac src/SingletonPatternDemo.java
-    java -cp src SingletonPatternDemo
-
-    javac src/FactoryPatternDemo.java
-    java -cp src FactoryPatternDemo
-
-    javac src/AdapterPatternDemo.java
-    java -cp src AdapterPatternDemo
-
-    javac src/DecoratorPatternDemo.java
-    java -cp src DecoratorPatternDemo
+    javac src/Main.java
+    java -cp src Main
     ```
 
-## Design Patterns
+## Usage
 
-### Behavioral Design Patterns
+### User Input
 
-#### 1. Observer Pattern
+1. **Add Classroom**: `add_classroom <class_name>`
+   - Example: `add_classroom Math101`
 
-**Use Case**: A blog website where users can subscribe to receive notifications when a new blog post is published.
+2. **Remove Classroom**: `remove_classroom <class_name>`
+   - Example: `remove_classroom Math101`
 
-- **Classes**:
-    - `Observer`: Interface for observers.
-    - `BlogSubscriber`: Concrete observer class.
-    - `Subject`: Interface for subjects.
-    - `Blog`: Concrete subject class.
+3. **List Classrooms**: `list_classrooms`
 
-#### 2. Strategy Pattern
+4. **Add Student**: `add_student <student_id> <class_name>`
+   - Example: `add_student 101 Math101`
 
-**Use Case**: A payment system that allows users to choose between multiple payment methods (e.g., Credit Card, PayPal, Bitcoin).
+5. **List Students**: `list_students <class_name>`
+   - Example: `list_students Math101`
 
-- **Classes**:
-    - `PaymentStrategy`: Interface for payment strategies.
-    - `CreditCardPayment`, `PayPalPayment`, `BitcoinPayment`: Concrete strategy classes.
-    - `PaymentContext`: Context class to use strategies.
+6. **Schedule Assignment**: `schedule_assignment <class_name> <assignment_name>`
+   - Example: `schedule_assignment Math101 Homework1`
 
-### Creational Design Patterns
+7. **Submit Assignment**: `submit_assignment <student_id> <class_name> <assignment_name>`
+   - Example: `submit_assignment 101 Math101 Homework1`
 
-#### 1. Singleton Pattern
+8. **Display Assignment Status**: `display_assignment_status <assignment_name>`
+   - Example: `display_assignment_status Homework1`
 
-**Use Case**: A configuration manager for an application where only one instance should manage the configuration settings.
+### Console Output
 
-- **Classes**:
-    - `ConfigurationManager`: Singleton class managing configuration properties.
+- **Classroom Addition**: "Classroom [Name] has been created."
+- **Student Addition**: "Student [ID] has been enrolled in [Class Name]."
+- **Assignment Scheduled**: "Assignment for [Class Name] has been scheduled."
+- **Assignment Submission**: "Assignment submitted by Student [ID] in [Class Name]."
 
-#### 2. Factory Pattern
+## Design Principles
 
-**Use Case**: A shape creation system where users can create different types of shapes (e.g., Circle, Square, Rectangle).
+- **SOLID Principles**: The application is designed following SOLID principles for maintainability and scalability.
+- **Logging**: Uses `java.util.logging` for comprehensive logging.
+- **Exception Handling**: Proper handling of exceptions to ensure the program does not crash unexpectedly.
+- **Defensive Programming**: Validations and checks are in place to prevent invalid inputs and states.
 
-- **Classes**:
-    - `Shape`: Interface for shapes.
-    - `Circle`, `Square`, `Rectangle`: Concrete shape classes.
-    - `ShapeFactory`: Factory class to create shapes.
+## Code Walkthrough
 
-### Structural Design Patterns
+The application consists of the following classes:
 
-#### 1. Adapter Pattern
+### `Classroom`
 
-**Use Case**: An application that needs to integrate with two different types of payment gateways with different interfaces.
+Manages students and assignments for a classroom.
 
-- **Classes**:
-    - `OldPaymentGateway`: Existing payment gateway class.
-    - `NewPaymentGateway`: New payment gateway class.
-    - `PaymentGateway`: Adapter interface.
-    - `OldPaymentGatewayAdapter`, `NewPaymentGatewayAdapter`: Adapter classes.
+### `Student`
 
-#### 2. Decorator Pattern
+Represents a student with an ID and name, and tracks assignment completion status.
 
-**Use Case**: A text editor where users can add functionalities like spell check, auto-correct, and grammar check to the text editor dynamically.
+### `Main`
 
-- **Classes**:
-    - `TextEditor`: Interface for text editors.
-    - `SimpleTextEditor`: Concrete text editor class.
-    - `TextEditorDecorator`: Abstract decorator class.
-    - `SpellCheckDecorator`, `GrammarCheckDecorator`: Concrete decorator classes.
+Handles user input and coordinates actions across classrooms, students, and assignments.
 
-## Contributing
+### Example Code
 
-Contributions are welcome! Please feel free to submit a Pull Request.
-
-## License
-
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+```java
+public class Main {
+    public static void main(String[] args) {
+        HashMap<String, Classroom> classes = new HashMap<>();
+        Scanner sc = new Scanner(System.in);
+        while (true) {
+            // Display menu and process user input
+        }
+    }
+}
